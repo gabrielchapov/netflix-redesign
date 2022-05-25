@@ -3,12 +3,14 @@ import React from 'react'
 import { Movie } from '../typings'
 
 interface Props {
+  // When using firebase
+  // movie: Movie | DocumentData
   movie: Movie
 }
 
 function Thumbnail({ movie }: Props) {
   return (
-    <div className="min-2-[180px] relative h-28 cursor-pointer transition duration-200 ease-out md:h-36 md:min-w-[260px] md:hover:scale-105">
+    <div className="min-w-[180px] relative h-28 cursor-pointer transition duration-200 ease-out md:h-36 md:min-w-[260px] md:hover:scale-105">
       <Image
         src={`https://image.tmdb.org/t/p/w500${
           movie.backdrop_path || movie.poster_path
