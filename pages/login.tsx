@@ -1,3 +1,4 @@
+import { async } from '@firebase/util'
 import Head from 'next/head'
 import Image from 'next/image'
 import React, { useState } from 'react'
@@ -9,13 +10,21 @@ interface Inputs {
 }
 
 function Login() {
+
   const [login, setLogin] = useState(false)
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>()
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = async ({email, password}) => {
+    if (login) {
+      // Await signIn{email,password}
+    } else {
+     // await signUp(email,password)
+    }
+  }
 
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black text-black md:items-center md:justify-center md:bg-transparent">
@@ -38,7 +47,7 @@ function Login() {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14"
+        className="relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 text-white md:mt-0 md:max-w-md md:px-14"
       >
         <h1 className="text-4xl font-semibold text-white">Sign In</h1>
         <div className="space-y-4">
@@ -47,25 +56,39 @@ function Login() {
               type="email"
               placeholder="Email"
               className="input"
-              {...(register('email'), { required: true })}
+              {...register('email', { required: true })}
             />
+            {errors.email && (
+              <p className="p-1 text-[13px] font-light text-orange-500">
+                This field is required
+              </p>
+            )}
           </label>
           <label className="inline-block w-full">
             <input
               type="password"
               placeholder="Password"
               className="input"
-              {...(register('password'), { required: true })}
+              {...register('password', { required: true })}
             />
+            {errors.password && (
+              <p className="p-1 text-[13px] font-light text-orange-500">
+                Your password must contain between 4 and 60 characters
+              </p>
+            )}
           </label>
-          <button className="hover:-translate-1 w-full rounded bg-[#e50914] py-3 font-semibold transition duration-200 ease-in-out hover:scale-105">
+          <button
+            onClick={() => setLogin(true)}
+            className="hover:-translate-1 w-full rounded bg-[#e50914] py-3 font-semibold transition duration-200 ease-in-out hover:scale-105"
+          >
             Sign In
           </button>
           <div className="flex justify-start space-x-4">
             <h1 className="text-white">New to Netflix?</h1>
             <button
+              onClick={() => setLogin(false)}
               type="submit"
-              className="hover:-translate-1 rounded bg-[#e50914] px-2 text-black transition duration-200 ease-in-out hover:scale-105 hover:underline"
+              className="hover:-translate-1 rounded bg-[#e50914] px-2 text-white text-black transition duration-200 ease-in-out hover:scale-105 hover:underline"
             >
               Sign up now
             </button>
