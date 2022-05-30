@@ -36,8 +36,8 @@ function Banner({ netflixOriginals }: Props) {
         {movie?.overview}
       </p>
 
-      <div className="flex space-x-3">
-        <button className="bannerButton bg-white text-black p-2 md:px-4">
+      <div className="flex space-x-3 ">
+        <button className="bannerButton bg-white text-black p-2 md:px-4  ">
           <FaPlay className="h-4 w-4 text-black md:h-7 md:w-7" />
           Play
         </button>
