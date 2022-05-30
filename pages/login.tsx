@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import useAuth from '../hooks/useAuth'
 
 interface Inputs {
   email: string
@@ -12,7 +13,7 @@ interface Inputs {
 function Login() {
 
   const [login, setLogin] = useState(false)
-
+const {signIn, signUp} = useAuth()
   const {
     register,
     handleSubmit,
@@ -20,9 +21,9 @@ function Login() {
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = async ({email, password}) => {
     if (login) {
-      // Await signIn{email,password}
+       await signIn(email,password)
     } else {
-     // await signUp(email,password)
+      await signUp(email,password)
     }
   }
 
@@ -51,11 +52,11 @@ function Login() {
       >
         <h1 className="text-4xl font-semibold text-white">Sign In</h1>
         <div className="space-y-4">
-          <label className="inline-block w-full">
+          <label className="inline-block w-full h-full">
             <input
               type="email"
               placeholder="Email"
-              className="input"
+              className="input p-2 md:p-4"
               {...register('email', { required: true })}
             />
             {errors.email && (
@@ -68,7 +69,7 @@ function Login() {
             <input
               type="password"
               placeholder="Password"
-              className="input"
+              className="input p-2 md:p-4"
               {...register('password', { required: true })}
             />
             {errors.password && (

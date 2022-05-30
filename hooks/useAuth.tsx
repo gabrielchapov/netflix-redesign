@@ -1,3 +1,4 @@
+// Custom user authentication hook, works with every database
 import {
     createUserWithEmailAndPassword,
     onAuthStateChanged,
@@ -32,6 +33,7 @@ import {
     children: React.ReactNode
   }
   
+  // AuthProvider wraps the whole app
   export const AuthProvider = ({ children }: AuthProviderProps) => {
     const router = useRouter()
     const [user, setUser] = useState<User | null>(null)
@@ -39,6 +41,7 @@ import {
     const [initialLoading, setInitialLoading] = useState(true)
     const [loading, setLoading] = useState(false)
   
+    // Persisting the user
     useEffect(
       () =>
         onAuthStateChanged(auth, (user) => {
@@ -58,6 +61,7 @@ import {
       [auth]
     )
   
+    // Signup new user
     const signUp = async (email: string, password: string) => {
       setLoading(true)
   
@@ -71,6 +75,8 @@ import {
         .finally(() => setLoading(false))
     }
   
+
+    // Sign in existing user
     const signIn = async (email: string, password: string) => {
       setLoading(true)
       await signInWithEmailAndPassword(auth, email, password)
@@ -82,7 +88,9 @@ import {
         .catch((error) => alert(error.message))
         .finally(() => setLoading(false))
     }
-  
+
+
+  // Sign out existing user
     const logout = async () => {
       setLoading(true)
   
@@ -106,8 +114,8 @@ import {
     )
   }
   
-  // Let's only export the `useAuth` hook instead of the context.
-  // We only want to use the hook directly and never the context comopnent.
+  // Only export the `useAuth` hook instead of the context.
+  // We only want to use the hook directly and never the context component.
   export default function useAuth() {
     return useContext(AuthContext)
   }
