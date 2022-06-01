@@ -79,6 +79,7 @@ const {signIn, signUp} = useAuth()
             )}
           </label>
           <button
+
             onClick={() => setLogin(true)}
             className="hover:-translate-1 w-full rounded bg-[#e50914] py-3 font-semibold transition duration-200 ease-in-out hover:scale-105"
           >
