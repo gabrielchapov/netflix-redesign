@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import Plans from '../components/Plans'
 import useAuth from '../hooks/useAuth'
 
 interface Inputs {
@@ -25,7 +26,10 @@ const {signIn, signUp} = useAuth()
     } else {
       await signUp(email,password)
     }
+  
   }
+
+  
 
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black text-black md:items-center md:justify-center md:bg-transparent">
