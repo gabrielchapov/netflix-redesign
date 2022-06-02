@@ -5,6 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 import useAuth from '../hooks/useAuth'
 
+
 function Plans() {
   const { logout } = useAuth()
   return (
@@ -58,6 +59,7 @@ function Plans() {
 
           </div>
           <Table />
+          <button>Subscribe</button>
         </div>
       </main>
     </div>
