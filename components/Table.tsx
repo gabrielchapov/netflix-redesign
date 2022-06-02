@@ -1,25 +1,37 @@
+import { CheckIcon } from '@heroicons/react/solid'
+import React from 'react'
+
 function Table() {
   return (
-      <table>
-          <tbody className="divide-y divide-[gray]">
+    <table>
+      <tbody className="divide-y divide-[gray]">
+        <tr className="tableRow">
+          <td className="tableDataTitle">Monthly price</td>
 
-              <tr className="flex flex-wrap items-center font-medium">
-                  <td className="w-full p-2.5 text-center text-sm font-normal text-white md:w-2/5 md:p-3.5 md:text-left md:text-base">Monthly price</td>
-                  <td className="w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5">9.99$</td>
-              </tr>
+          <td className="tableDataFeature">AED</td>
+        </tr>
+        <tr className="tableRow">
+          <td className="tableDataTitle">Video quality</td>
 
-              <tr className="flex flex-wrap items-center font-medium">
-                  <td className="w-full p-2.5 text-center text-sm font-normal text-white md:w-2/5 md:p-3.5 md:text-left md:text-base">Monthly price</td>
-                  <td className="w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5">9.99$</td>
-              </tr>
-              
-              <tr className="flex flex-wrap items-center font-medium">
-                  <td className="w-full p-2.5 text-center text-sm font-normal text-white md:w-2/5 md:p-3.5 md:text-left md:text-base">Monthly price</td>
-                  <td className="w-[calc(100%/3)] p-2.5 text-center md:w-[calc(60%/3)] md:p-3.5">9.99$</td>
-              </tr>
-            
-          </tbody>
-      </table>
+          <td className="tableDataFeature"></td>
+        </tr>
+        <tr className="tableRow">
+          <td className="tableDataTitle">Resolution</td>
+
+          <td className="tableDataFeature"></td>
+        </tr>
+        <tr className="tableRow">
+          <td className="tableDataTitle">
+            Watch on your TV, computer, mobile phone and tablet
+          </td>
+
+          <td className="tableDataFeature">
+            <CheckIcon className="inline-block h-8 w-8" />
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
   )
 }
 
